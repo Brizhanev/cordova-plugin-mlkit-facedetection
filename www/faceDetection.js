@@ -37,5 +37,9 @@ faceDetection.prototype.stopX = function(success, error) {
   exec(success, error, "faceDetection", "stopX", []);
 };
 
+faceDetection.prototype.getDisplaySize = function(success, error) {
+  exec(success, error, "faceDetection", "getDisplaySize", []);
+};
+
 var FaceDetection = new faceDetection();
 module.exports = FaceDetection;

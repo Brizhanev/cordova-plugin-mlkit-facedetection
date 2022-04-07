@@ -54,6 +54,7 @@ public class faceDetection extends CordovaPlugin implements LivePreviewActivity.
     private CallbackContext startCallback;
     private CallbackContext stopCallback;
     private CallbackContext takePictureCallback;
+    private CallbackContext getDisplaySizeCallback;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -94,9 +95,34 @@ public class faceDetection extends CordovaPlugin implements LivePreviewActivity.
             takePictureCallback = callbackContext;
             this.takePicture(args.getJSONObject(0), this.takePictureCallback);
             return true;
+        } else if (action.equals("getDisplaySize")) {
+            Log.d(TAG, "execute getDisplaySize");
+            getDisplaySizeCallback = callbackContext;
+            this.getDisplaySize(this.getDisplaySizeCallback);
+            return true;
         }
 
         return false;
+    }
+
+    private void getMetrics(CallbackContext callbackContext) {
+
+        DisplayMetrics metrics = cordova.getActivity().getResources().getDisplayMetrics();
+
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+
+        JSONObject result = new JSONObject();
+        try {
+            result.put("width", width);
+            result.put("height", height);   
+        } catch (JSONException exception) {
+            callbackContext.error("JSONException: " + exception.getMessage());
+        }
+
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
+        pluginResult.setKeepCallback(true);
+        callbackContext.sendPluginResult(pluginResult);
     }
 
     private boolean checkPermissions() {
