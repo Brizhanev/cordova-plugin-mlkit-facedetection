@@ -173,12 +173,12 @@ public class FaceGraphic extends Graphic {
                         idPaints[colorID].measureText(
                                 String.format(Locale.US, "EulerZ: %.2f", face.getHeadEulerAngleZ())));
         // Draw labels
-        canvas.drawRect(
+        /*canvas.drawRect(
                 left - BOX_STROKE_WIDTH,
                 top + yLabelOffset,
                 left + textWidth + (2 * BOX_STROKE_WIDTH),
                 top,
-                labelPaints[colorID]);
+                labelPaints[colorID]);*/
         yLabelOffset += ID_TEXT_SIZE;
         canvas.drawRect(left, top, right, bottom, boxPaints[colorID]);
         if (face.getTrackingId() != null) {
@@ -255,14 +255,14 @@ public class FaceGraphic extends Graphic {
             yLabelOffset += lineHeight;
         }
 
-        canvas.drawText(
+        /*canvas.drawText(
                 "EulerX: " + face.getHeadEulerAngleX(), left, top + yLabelOffset, idPaints[colorID]);
         yLabelOffset += lineHeight;
         canvas.drawText(
                 "EulerY: " + face.getHeadEulerAngleY(), left, top + yLabelOffset, idPaints[colorID]);
         yLabelOffset += lineHeight;
         canvas.drawText(
-                "EulerZ: " + face.getHeadEulerAngleZ(), left, top + yLabelOffset, idPaints[colorID]);
+                "EulerZ: " + face.getHeadEulerAngleZ(), left, top + yLabelOffset, idPaints[colorID]);*/
 
         // Draw facial landmarks
         drawFaceLandmark(canvas, FaceLandmark.LEFT_EYE);
