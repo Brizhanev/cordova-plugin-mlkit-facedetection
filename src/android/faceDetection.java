@@ -105,7 +105,7 @@ public class faceDetection extends CordovaPlugin implements LivePreviewActivity.
         return false;
     }
 
-    private void getMetrics(CallbackContext callbackContext) {
+    private void getDisplaySize(CallbackContext callbackContext) {
 
         DisplayMetrics metrics = cordova.getActivity().getResources().getDisplayMetrics();
 
